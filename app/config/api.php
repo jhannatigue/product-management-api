@@ -47,7 +47,11 @@ $config['refresh_token_key'] = getenv('REFRESH_TOKEN_KEY') ?: '';
 |------------------------------------------------------------------
 */
 
-$config['allow_origin'] = '*';
+$config['allow_origin'] = [
+    'http://localhost:5173',
+    'http://localhost:5174',
+    'https://product-management-frontend-hauj.onrender.com'
+];
 
 /*
 |------------------------------------------------------------------
