@@ -36,15 +36,13 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
 /*
 |--------------------------------------------------------------------------
-| Enable/Disable Migrations
+| Enable/Disable API Helper
 |--------------------------------------------------------------------------
 |
-| Migrations are disabled by default for security reasons.
-| You should enable migrations whenever you intend to do a schema migration
-| and disable it back when you're done.
+| Enable the API helper so the Api library can be used.
 |
 */
-$config['api_helper_enabled'] = FALSE;
+$config['api_helper_enabled'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,7 +53,6 @@ $config['api_helper_enabled'] = FALSE;
 |
 */
 $config['payload_token_expiration'] = 900;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -112,18 +109,11 @@ $config['refresh_token_table'] = 'refresh_tokens';
 |--------------------------------------------------------------------------
 | JWT Issuer and Audience
 |--------------------------------------------------------------------------
+|
 | These are used for JWT Issuer and Audience claims.
 |
 */
 $config['jwt_issuer'] = 'your-app';
-
-/*
-|--------------------------------------------------------------------------
-| JWT Issuer and Audience
-|--------------------------------------------------------------------------
-| These are used for JWT Issuer and Audience claims.
-|
-*/
 
 $config['jwt_audience'] = 'your-app-clients';
 
@@ -131,6 +121,7 @@ $config['jwt_audience'] = 'your-app-clients';
 |--------------------------------------------------------------------------
 | Rate Limiting
 |--------------------------------------------------------------------------
+|
 | These settings are used for API rate limiting.
 |
 */
@@ -140,7 +131,8 @@ $config['rate_limit_enabled'] = true;
 |--------------------------------------------------------------------------
 | Rate Limiting Requests and Seconds
 |--------------------------------------------------------------------------
-| These settings define the number of requests allowed and the time 
+|
+| These settings define the number of requests allowed and the time
 | window in seconds.
 |
 */
@@ -150,7 +142,8 @@ $config['rate_limit_requests'] = 60;
 |--------------------------------------------------------------------------
 | Rate Limiting Seconds
 |--------------------------------------------------------------------------
-| This setting defines the time window in seconds for rate limiting.
+|
+| This setting defines the time window for rate limiting.
 |
 */
 $config['rate_limit_seconds'] = 60;
