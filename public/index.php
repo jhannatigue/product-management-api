@@ -1,14 +1,33 @@
+
 <?php
 define('PREVENT_DIRECT_ACCESS', TRUE);
+
+// CORS configuration for your deployed frontend
+$allowedOrigin = 'https://product-management-frontend-hauj.onrender.com';
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+
+if ($origin === $allowedOrigin) {
+    header('Access-Control-Allow-Origin: ' . $allowedOrigin);
+    header('Vary: Origin');
+}
+
+header('Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
+
+if (($_SERVER['REQUEST_METHOD'] ?? '') === 'OPTIONS') {
+    http_response_code(204);
+    exit;
+}
+
 /**
  * ------------------------------------------------------------------
  * LavaLust - an opensource lightweight PHP MVC Framework
  * ------------------------------------------------------------------
  *
  * MIT License
- * 
+ *
  * Copyright (c) 2020 Ronald M. Marasigan
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -35,53 +54,14 @@ define('PREVENT_DIRECT_ACCESS', TRUE);
  * @license https://opensource.org/licenses/MIT MIT License
  */
 
-/*
- *---------------------------------------------------------------
- * SYSTEM DIRECTORY NAME
- *---------------------------------------------------------------
- *
- * This variable must contain the name of your "scheme" directory.
- * Set the path if it is not in the same directory as this file.
- * 
- * NO TRAILING SLASH!
- */
-	$system_path 			= 'scheme';
+$system_path = 'scheme';
+$application_folder = 'app';
+$public_folder = 'public';
 
-/*
- *---------------------------------------------------------------
- * APPLICATION DIRECTORY NAME
- *---------------------------------------------------------------
- *
- * If you want this front controller to use a different "app"
- * directory than the default one you can set its name here.
- *
- * NO TRAILING SLASH!
- */
-	$application_folder 	= 'app';
-
-/*
- *---------------------------------------------------------------
- * APPLICATION DIRECTORY NAME
- *---------------------------------------------------------------
- * This let you set up your public folder where css, js and other public,
- * files will be visible
- */
-	$public_folder			= 'public';
-
-/*
- * ------------------------------------------------------
- * Define Application Constants
- * ------------------------------------------------------
- */
-define('ROOT_DIR',  dirname(__DIR__) . DIRECTORY_SEPARATOR);
+define('ROOT_DIR', dirname(__DIR__) . DIRECTORY_SEPARATOR);
 define('SYSTEM_DIR', ROOT_DIR . $system_path . DIRECTORY_SEPARATOR);
 define('APP_DIR', ROOT_DIR . $application_folder . DIRECTORY_SEPARATOR);
 define('PUBLIC_DIR', $public_folder);
 
-/*
- * ------------------------------------------------------
- * Setup done? Then Hurray!
- * ------------------------------------------------------
- */
 require_once SYSTEM_DIR . 'kernel/LavaLust.php';
 ?>
